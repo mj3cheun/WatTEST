@@ -35,7 +35,7 @@ export class Teacher extends React.PureComponent {
 
 	setTeacherId(teacherId) {
 		this.setState({teacherId});
-		initClassroom('teacher');
+		initClassroom(teacherId);
 	}
 
 	render() {

@@ -15,9 +15,9 @@ export default class Login extends React.PureComponent {
 	constructor() {
 		super();
 		this.state = {
-			host: 'teacher',
-			user: 'student1',
-			password: 'password'
+			host: '',
+			user: '',
+			password: ''
 		}
 	}
 
@@ -36,7 +36,7 @@ export default class Login extends React.PureComponent {
 			<div className="Login">
 				<div style={{margin: '4rem'}}>
 					<TextField
-						floatingLabelText='Teacher'
+						floatingLabelText='Classroom'
 						value={this.state.host}
 						onChange={text => {
 							this.setState({
