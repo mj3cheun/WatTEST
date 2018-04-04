@@ -2,21 +2,20 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import facets from './facets';
 
-import {handle200, correctUrlEncode} from '../lib/util.js';
-import memoize from '../lib/memoize.js';
+import {handle200, correctUrlEncode} from '../lib/util';
+import memoize from '../lib/memoize';
 
-import {signIn, restrictToAdmin, restrictToUser} from '../lib/auth.js';
+import {signIn, restrictToAdmin, restrictToUser} from '../lib/auth';
 import {decryptRes} from '../decrypt';
+
+import {getSave, setSave} from '../lib/saveManager';
 
 export default ({ config, db }) => {
 	let api = Router();
 
 	// perhaps expose some API metadata at the root
 	api.get('/', (req, res) => {
-		res.json({
-			version,
-			help: "To login, send POST request to /login containing username and password. See PDF and README for details..."
-		});
+		res.json({version});
 	});
 
 	api.post('/login', decryptRes, (req, res) => {
@@ -38,8 +37,21 @@ export default ({ config, db }) => {
 			});
 	});
 
-	api.get('/teacher-id', (req, res) => {
-		handle200(res, 'lol');
+	api.post('/save', restrictToUser, (req, res) => {
+		const token = req.cookies.auth_token;
+		let data = JSON.stringify(req.body);
+		setSave(token, data)
+			.then(data => {
+				handle200(res, data);
+			});
+	});
+
+	api.post('/load', restrictToUser, (req, res) => {
+		const token = req.cookies.auth_token;
+		getSave(token)
+			.then(data => {
+				handle200(res, data);
+			});
 	});
 
 	return api;

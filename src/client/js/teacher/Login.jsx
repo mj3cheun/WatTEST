@@ -9,9 +9,7 @@ export default class Login extends React.PureComponent {
 	constructor() {
 		super();
 		this.state = {
-			user: '',
-			password: '',
-			result: ''
+			user: ''
 		}
 	}
 
@@ -20,21 +18,11 @@ export default class Login extends React.PureComponent {
 			<div className="Login">
 				<div style={{margin: '4rem'}}>
 					<TextField
-						floatingLabelText='User'
+						floatingLabelText='Classroom Name'
 						value={this.state.user}
 						onChange={text => {
 							this.setState({
 								user: text.target.value || ''
-							});
-						}}
-					/>
-					<br/>
-					<TextField
-						floatingLabelText='Password'
-						value={this.state.password}
-						onChange={text => {
-							this.setState({
-								password: text.target.value || ''
 							});
 						}}
 					/>

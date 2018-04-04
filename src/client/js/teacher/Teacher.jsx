@@ -8,6 +8,7 @@ import {initClassroom} from './P2PComms';
 import SwitchedRoute from '../components/SwitchedRoute.jsx';
 
 import Login from './Login.jsx';
+import Save from './Save.jsx';
 import Library from './Library.jsx';
 import QuizEdit from './QuizEdit.jsx';
 import QuizProctor from './QuizProctor.jsx';
@@ -49,6 +50,12 @@ export class Teacher extends React.PureComponent {
 						path={loginPath}
 						render={props => <Login setTeacherId={id => this.setTeacherId(id)} {...props}/>}
 						redirect={libraryPath}
+					/>
+					<SwitchedRoute
+						toggle={this.state.teacherId}
+						path={relativePath + '/save'}
+						render={props => <Save {...props}/>}
+						redirect={loginPath}
 					/>
 					<SwitchedRoute
 						toggle={this.state.teacherId}

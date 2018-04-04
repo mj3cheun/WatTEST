@@ -40,7 +40,7 @@ export function signIn(user, password) {
 
 const restrictPrivilege = (req, res, next, privilege) => {
 	const token = req.cookies.auth_token;
-	const uuid = getUuid();
+	const uuid = getId();
 	const time = getUnixTimestamp();
 	const expiryPeriod = 60 * 5;
 
@@ -59,6 +59,7 @@ const restrictPrivilege = (req, res, next, privilege) => {
 					throw new Error('Unauthorized');
 				}
 			})
+			.then(() => req.cookies.auth_token = uuid)
 			.then(() => next())
 			.catch(e => handle401(res, e.toString()));
 	});

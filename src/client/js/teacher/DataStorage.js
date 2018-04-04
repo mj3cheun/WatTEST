@@ -11,9 +11,13 @@ const storageStrategyArr = [
 	'db'
 ];
 
-let dataStore = {};
+let dataStore = {
+	user: {},
+	quiz: {}
+};
 let isLoaded = false;
 
+/*
 dataStore = {
 	user: {
 		student1: {
@@ -95,25 +99,18 @@ dataStore = {
 		}
 	}
 };
+//*/
 
-export const saveData = () => {
-	if(!isLoaded) {
-		console.log('Data not loaded!');
-	}
-	else {
-		console.log('SAVE');
-	}
+export const getDb = () => {
+	isLoaded = true;
+	return cloneDeep(dataStore);
 }
 
-const loadData = strategy => {
-	isLoaded = true;
+export const setDb = data => {
+	dataStore = cloneDeep(data);
 }
 
 const tableExists = table => {
-	if(!isLoaded) {
-		loadData(storageStrategy);
-	}
-
 	return dataStore[table];
 }
 

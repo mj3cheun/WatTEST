@@ -66,6 +66,8 @@ export default class Library extends React.PureComponent {
 				</div>
 				<div className='menu-bar'>
 					<Link to={`/teacher/quiz/edit/${newQuizId()}`}>New Quiz</Link>
+					<span style={{width: '50px'}}/>
+					<Link to={`/teacher/save`}>Save</Link>
 				</div>
 				<ReactTable data={this.getQuizArray()} columns={this.getColumns()} pageSize={12}/>
 			</div>

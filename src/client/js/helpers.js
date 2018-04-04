@@ -6,10 +6,11 @@ export const booleanFetch = url => {
 			return response.json().then(data => data);
 		});
 }
-
+console.log(JSON.stringify(process.env));
+console.log(process.env.NODE_ENV);
 export const getPeer = user => new Peer(
 	user,
-	process.env.NODE_ENV !== 'dev'
+	true
 		? {host: 'syde322-a3.herokuapp.com', port: 443, path: '/peerjs'}
 		: {host: 'localhost', port: 8080, path: '/peerjs'}
 );
