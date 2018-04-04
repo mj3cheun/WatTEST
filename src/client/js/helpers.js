@@ -7,6 +7,11 @@ export const booleanFetch = url => {
 		});
 }
 
-export const getPeer = user => new Peer(user, {host: 'localhost', port: 8080, path: '/peerjs'});
+export const getPeer = user => new Peer(
+	user,
+	process.env.NODE_ENV !== 'dev'
+		? {host: 'syde322-a3.herokuapp.com', port: 443, path: '/peerjs'}
+		: {host: 'localhost', port: 8080, path: '/peerjs'}
+);
 
 export const getStudentConnName = (teacherId, studentId) => `${teacherId}-${studentId}`;
