@@ -1,0 +1,23 @@
+:root {
+	/* Declare Colours */
+	--red: #FF0000;
+	--orange: #FF6600;
+	--white: #FFFFFF;
+	--black: #000000;
+
+	/* Bootstrap breakpoints */
+	--screen-xs-min: 480px;
+	--screen-sm-min: 768px;
+	--screen-md-min: 992px;
+	--screen-lg-min: 1200px;
+
+	/* So media queries don't overlap when required, provide a maximum */
+	--screen-xs-max: calc(var(--screen-sm-min) - 1);
+	--screen-sm-max: calc(var(--screen-md-min) - 1);
+	--screen-md-max: calc(var(--screen-lg-min) - 1);
+
+	/* Declare custom-media for postCSS media queries using hardcoded values as variables are unsupported (Src: https://github.com/MoOx/postcss-cssnext/issues/253) */
+	@custom-media --screen-xs (max-width: 767px);
+	@custom-media --screen-sm (max-width: 991px);
+	@custom-media --screen-md (max-width: 1199px);
+}
