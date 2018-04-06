@@ -25,9 +25,10 @@ export default class Login extends React.PureComponent {
 		console.log('submitted!');
 		connTeacher(this.state.host, this.state.user, this.state.password)
 			.then(() => this.props.isAuth(true))
-			.catch(() => {
+			.catch(e => {
 				this.props.isAuth(false);
 				console.log('conn fail');
+				console.log(e);
 			});
 	}
 

@@ -3,7 +3,7 @@ import {getPeer, getStudentConnName} from '../helpers.js';
 let peer = getPeer();
 let conn;
 
-const connTimeout = 3 * 1000; // secs
+const connTimeout = 10 * 1000; // secs
 
 export const send = input => {
 	conn.send(input);

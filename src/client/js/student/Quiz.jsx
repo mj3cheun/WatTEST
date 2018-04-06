@@ -46,7 +46,7 @@ export default class Quiz extends React.Component {
 								? this.state.data.question_choice.map((choice, index) =>
 										<RaisedButton onClick={() => {
 											const answer = [index];
-											this.setState(answer);
+											this.setState({answer});
 											send(answer);
 										}} label={choice}/>
 									)
